@@ -4,10 +4,11 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Blob;
 
 @Data
 @Entity
-@Table(name="course")
+@Table(name="module")
 public class Module implements Serializable {
 
     @Id
@@ -16,9 +17,6 @@ public class Module implements Serializable {
 
     @Column(name="title")
     private String title;
-
-    @Column(name="content")
-    private String content;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="course_id", referencedColumnName = "id")
