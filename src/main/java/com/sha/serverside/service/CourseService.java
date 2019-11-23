@@ -15,6 +15,8 @@ public interface CourseService {
 
     List<Course> findAllCourses();
 
+    List<Course> findCourseByInstructor(Long teacherId);
+
     Course findCourseById(Long courseId);
 
     List<Module> findAllModules(Long courseId);

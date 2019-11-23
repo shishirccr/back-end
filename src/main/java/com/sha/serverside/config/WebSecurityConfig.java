@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/resources/**", "/error", "/api/user/**").permitAll()
                 //These can be reachable for just have student role.
                 .antMatchers("/api/student/**").hasRole("STUDENT")
-                .antMatchers("/api/course/**").hasRole("STUDENT")
+
                 //These can be reachable for just have teacher role.
                 .antMatchers("/api/teacher/**").hasRole("TEACHER")
                 //These can be reachable for just have manager role.

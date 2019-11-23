@@ -46,6 +46,11 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public List<Course> findCourseByInstructor(Long teacherId) {
+        return courseRepository.findByInstructorId(teacherId);
+    }
+
+    @Override
     public Course findCourseById(Long courseId) {
         return courseRepository.findById(courseId).get();
     }
