@@ -73,7 +73,7 @@ public class StudentController {
         return new ResponseEntity<>(discussion, HttpStatus.OK);
     }
 
-
+// COMMENTS
 //    @GetMapping("/api/user/discussions/comments/{discId}")
 //    public ResponseEntity<?> getAllComments(@PathVariable Long discId){
 //        List<Comments> commentsList =
