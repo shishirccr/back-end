@@ -2,8 +2,10 @@ package com.sha.serverside.controller;
 
 import com.sha.serverside.model.Course;
 import com.sha.serverside.model.CourseStudent;
+import com.sha.serverside.model.Discussions;
 import com.sha.serverside.model.Module;
 import com.sha.serverside.service.CourseStudentService;
+import com.sha.serverside.service.DiscussionService;
 import com.sha.serverside.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +20,8 @@ public class StudentController {
 
     @Autowired
     private CourseStudentService courseStudentService;
-
+    @Autowired
+    private DiscussionService discussionStudentService;
     @Autowired
     private ModuleService moduleService;
 
@@ -48,4 +51,39 @@ public class StudentController {
                 moduleService.findAllModulesOfCourse(courseId);
         return new ResponseEntity<>(moduleList, HttpStatus.OK);
     }
+
+    // --------------------------------------------------------------------------------------- discussions from here ---
+
+    @PostMapping("/api/user/discussionpost/")
+    public ResponseEntity<?> submitDiscussion(@RequestBody Discussions discussion){
+        return new ResponseEntity<>(discussionStudentService.saveDiscussion(discussion), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/api/user/discussions")
+    public ResponseEntity<?> getAllDiscussions(){
+        List<Discussions> discussionsList =
+                discussionStudentService.getAllDiscussions();
+        return new ResponseEntity<>(discussionsList, HttpStatus.OK);
+    }
+
+    @GetMapping("/api/user/discussions/{discId}")
+    public ResponseEntity<?> getDiscussionById(@PathVariable Long discId){
+        Discussions discussion =
+                discussionStudentService.findByPostId(discId);
+        return new ResponseEntity<>(discussion, HttpStatus.OK);
+    }
+
+
+//    @GetMapping("/api/user/discussions/comments/{discId}")
+//    public ResponseEntity<?> getAllComments(@PathVariable Long discId){
+//        List<Comments> commentsList =
+//                discussionStudentService.findAllCommentsByDiscussionID(discId);
+//        return new ResponseEntity<>(commentsList, HttpStatus.OK);
+//    }
+
+//    @PostMapping("/api/user/discussion/comment/")
+//    public ResponseEntity<?> submitComment(@RequestBody Comments comment){
+//        return new ResponseEntity<>(discussionStudentService.saveComment(comment), HttpStatus.CREATED);
+//    }
+
 }
