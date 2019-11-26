@@ -1,8 +1,6 @@
 package com.sha.serverside.controller;
 
-import com.sha.serverside.model.Course;
-import com.sha.serverside.model.CourseStudent;
-import com.sha.serverside.model.Discussions;
+import com.sha.serverside.model.*;
 import com.sha.serverside.model.Module;
 import com.sha.serverside.service.CourseStudentService;
 import com.sha.serverside.service.DiscussionService;
@@ -11,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -66,20 +63,20 @@ public class StudentController {
         return new ResponseEntity<>(discussionsList, HttpStatus.OK);
     }
 
-    @GetMapping("/api/user/discussions/{discId}")
+    @GetMapping("/api/user/discussion/{discId}")
     public ResponseEntity<?> getDiscussionById(@PathVariable Long discId){
         Discussions discussion =
                 discussionStudentService.findByPostId(discId);
         return new ResponseEntity<>(discussion, HttpStatus.OK);
     }
 
-// COMMENTS
-//    @GetMapping("/api/user/discussions/comments/{discId}")
-//    public ResponseEntity<?> getAllComments(@PathVariable Long discId){
-//        List<Comments> commentsList =
-//                discussionStudentService.findAllCommentsByDiscussionID(discId);
-//        return new ResponseEntity<>(commentsList, HttpStatus.OK);
-//    }
+ // --- COMMENTS
+    @GetMapping("/api/user/discussion/comments/{discId}")
+    public ResponseEntity<?> getAllComments(@PathVariable Long discId){
+        List<Comments> commentsList =
+                discussionStudentService.findAllCommentsByPostId(discId);
+        return new ResponseEntity<>(commentsList, HttpStatus.OK);
+    }
 
 //    @PostMapping("/api/user/discussion/comment/")
 //    public ResponseEntity<?> submitComment(@RequestBody Comments comment){

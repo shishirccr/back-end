@@ -1,8 +1,10 @@
 package com.sha.serverside.service;
 
 //import com.sha.serverside.model.Comments;
+import com.sha.serverside.model.Comments;
 import com.sha.serverside.model.Discussions;
 //import com.sha.serverside.repository.CommentRepository;
+import com.sha.serverside.repository.CommentRepository;
 import com.sha.serverside.repository.DiscussionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +21,8 @@ public class DiscussionServiceImpl implements DiscussionService{
     @Autowired
     private DiscussionRepository discussionRepository;
 
-    //@Autowired
-    //private CommentRepository commentRepository;
+    @Autowired
+    private CommentRepository commentRepository;
 
     @Override
     public List<Discussions> getAllDiscussions() {
@@ -35,10 +37,10 @@ public class DiscussionServiceImpl implements DiscussionService{
         return discussionRepository.save(discussion);
     }
 
-//    @Override
-//    public List<Comments> findAllCommentsByDiscussionID(Long discId) {
-//        return commentRepository.findAllCommentsByDiscussionID(discId);
-//    }
+    @Override
+    public List<Comments> findAllCommentsByPostId(Long discId) {
+        return commentRepository.findAllCommentsByPostId(discId);
+    }
 
 //    @Override
 //    public Comments saveComment(Comments comment){
