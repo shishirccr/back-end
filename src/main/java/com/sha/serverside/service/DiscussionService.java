@@ -13,6 +13,7 @@ public interface DiscussionService {
     Discussions findByPostId(Long discId);
 
 
-    //Comments saveComment(Comments comment);
+    Comments saveComment(Comments comment);
     List<Comments> findAllCommentsByPostId(Long discId);
+
 }

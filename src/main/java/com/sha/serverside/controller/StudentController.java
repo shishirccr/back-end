@@ -78,9 +78,9 @@ public class StudentController {
         return new ResponseEntity<>(commentsList, HttpStatus.OK);
     }
 
-//    @PostMapping("/api/user/discussion/comment/")
-//    public ResponseEntity<?> submitComment(@RequestBody Comments comment){
-//        return new ResponseEntity<>(discussionStudentService.saveComment(comment), HttpStatus.CREATED);
-//    }
+    @PostMapping("/api/user/discussion/postcomment/")
+    public ResponseEntity<?> submitComment(@RequestBody Comments comment){
+        return new ResponseEntity<>(discussionStudentService.saveComment(comment), HttpStatus.CREATED);
+    }
 
 }
