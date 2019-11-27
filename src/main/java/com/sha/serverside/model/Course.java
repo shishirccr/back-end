@@ -17,6 +17,12 @@ public class Course implements Serializable {
     @Column(name="name")
     private String name;
 
+    @Column(name="description")
+    private String description;
+
+    @Column(name="module_count")
+    private Long moduleCount;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="instructor_id", referencedColumnName = "id")
     private User instructor;
