@@ -70,7 +70,14 @@ public class StudentController {
         return new ResponseEntity<>(discussion, HttpStatus.OK);
     }
 
- // --- COMMENTS
+    @PostMapping("/api/user/discussions/delete/discussion/{discussionId}")
+    public ResponseEntity<?> deleteDiscussion(@RequestBody Long discussionId){
+        discussionStudentService.deleteDiscussion(discussionId);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    // ------------------------------------------------------------------------------------------ comments from here ---
+
     @GetMapping("/api/user/discussion/comments/{discId}")
     public ResponseEntity<?> getAllComments(@PathVariable Long discId){
         List<Comments> commentsList =
@@ -81,6 +88,12 @@ public class StudentController {
     @PostMapping("/api/user/discussion/postcomment/")
     public ResponseEntity<?> submitComment(@RequestBody Comments comment){
         return new ResponseEntity<>(discussionStudentService.saveComment(comment), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/api/user/discussions/delete/comment/{commentId}")
+    public ResponseEntity<?> deleteComment(@RequestBody Long commentId){
+        discussionStudentService.deleteComment(commentId);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 }

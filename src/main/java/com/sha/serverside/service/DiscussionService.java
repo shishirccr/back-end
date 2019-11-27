@@ -16,4 +16,7 @@ public interface DiscussionService {
     Comments saveComment(Comments comment);
     List<Comments> findAllCommentsByPostId(Long discId);
 
+    void deleteDiscussion(Long discussionId);
+
+    void deleteComment(Long commentId);
 }

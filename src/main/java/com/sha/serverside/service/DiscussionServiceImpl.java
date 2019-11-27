@@ -30,13 +30,22 @@ public class DiscussionServiceImpl implements DiscussionService{
     }
 
     @Override
-    public Discussions findByPostId(Long discId) { return discussionRepository.findByPostId(discId);}
-
-
+    public Discussions findByPostId(Long discId) {
+        return discussionRepository.findByPostId(discId);}
 
     @Override
     public Discussions saveDiscussion(Discussions discussion) {
         return discussionRepository.save(discussion);
+    }
+
+    @Override
+    public void deleteDiscussion(Long discussionId) {
+         discussionRepository.deleteById(discussionId);
+    }
+// -------------------------------------------------------- COMMENTS
+    @Override
+    public void deleteComment(Long commentId) {
+        commentRepository.deleteById(commentId);
     }
 
     @Override
@@ -45,8 +54,12 @@ public class DiscussionServiceImpl implements DiscussionService{
     }
 
     @Override
-    public Comments saveComment(Comments comment){
+    public Comments saveComment(Comments comment) {
         return commentRepository.save(comment);
     }
+
+
+
+
 
 }
