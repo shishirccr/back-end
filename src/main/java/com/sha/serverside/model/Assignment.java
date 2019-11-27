@@ -27,6 +27,9 @@ public class Assignment implements Serializable {
     @Column(name="end_date")
     private Date endDate;
 
+    @Column(name="file")
+    private String file;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="module_id", referencedColumnName = "id")
     private Module module;
