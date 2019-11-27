@@ -26,4 +26,6 @@ public class Course implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="instructor_id", referencedColumnName = "id")
     private User instructor;
+
+
 }
