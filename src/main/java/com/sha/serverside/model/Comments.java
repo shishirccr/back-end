@@ -20,8 +20,9 @@ public class Comments implements Serializable {
     @Column(name="postid")
     private Long postId;
 
-    @Column(name="user")
-    private Long userID;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="user", referencedColumnName = "id")
+    private User userID;
 
     @Column(name="body")
     private String body;

@@ -18,6 +18,8 @@ public class GradeController {
         return ResponseEntity.ok(gradeService.findStudentGrade(assignmentId, userId));
     }
 
+
+
     @PostMapping("/api/grade/addGrade")
     public ResponseEntity<?> enrollCourse(@RequestBody Grade grade){
         return new ResponseEntity<>(gradeService.addCourse(grade), HttpStatus.CREATED);
