@@ -27,6 +27,40 @@ public class User implements Serializable {
     @Column(name="role")
     private Role role;
 
+
+    @Column(name="user_description")
+    private String user_description;
+
+    @Column(name="first_name")
+    private String first_name;
+
+    @Column(name="last_name")
+    private String last_name;
+
+    @Column(name="gender")
+    private String gender;
+
+    @Column(name="address")
+    private String address;
+
+    @Column(name="mobile")
+    private Long mobile;
+
+    @Column(name="city")
+    private String city;
+
+    @Column(name="state")
+    private String state;
+
+    @Column(name="zipcode")
+    private Long zipcode;
+
+    @Column(name="country")
+    private String country;
+
+
+
+
     @Transient
     private String token;
 }

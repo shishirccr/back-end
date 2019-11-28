@@ -64,4 +64,26 @@ public class UserController {
     public ResponseEntity<?> getAllCourses(){
         return ResponseEntity.ok(courseService.findAllCourses());
     }
+
+
+
+    @PostMapping("/api/user/profileupdate")
+    public ResponseEntity<?> profileUpdate(@RequestBody User user){
+        System.out.println("profileupdate");
+        System.out.println(user.getUsername());
+        // System.out.println(user.getRole());
+        //if(userService.findByUsername(user.getUsername()) != null){
+        //  return new ResponseEntity<>(HttpStatus.CONFLICT);
+        //}
+
+
+        //Role role = user.getRole();
+        //user.setRole(role);
+        return new ResponseEntity<>(userService.updateUser(user), HttpStatus.CREATED);
+
+    }
+
+
+
+
 }
