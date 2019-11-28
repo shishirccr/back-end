@@ -16,8 +16,9 @@ public class Discussions implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long postId;
 
-    @Column(name="post_by")
-    private Long userID;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="post_by", referencedColumnName = "id")
+    private User userID;
 
     @Column(name="post_title")
     private String title;
