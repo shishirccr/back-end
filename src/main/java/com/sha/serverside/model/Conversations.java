@@ -30,4 +30,7 @@ public class Conversations implements Serializable {
     @Column(name="timestamp")
     private Timestamp timestamp;
 
+    @Column(name="firstmessage")
+    private String firstmessage;
+
 }

@@ -15,6 +15,8 @@ import java.util.Optional;
 @Transactional
 public class MessageServiceImpl implements MessageService {
 
+    Conversations sideLoad;
+
     @Autowired
     private ConversationRepository conversationRepository;
 
@@ -45,4 +47,23 @@ public class MessageServiceImpl implements MessageService {
     public Messages saveMessage(Messages message) {
         return messagesRepository.save(message);
     }
+
+    @Override
+    public Conversations saveConversation(Conversations conversations) {
+
+        sideLoad = conversationRepository.save(conversations);
+
+        Messages firstMessage = new Messages();
+        firstMessage.setCid(sideLoad.getId());
+        firstMessage.setText(sideLoad.getFirstmessage());
+        firstMessage.setTimestamp(sideLoad.getTimestamp());
+        firstMessage.setUser(sideLoad.getUser());
+        firstMessage.setRecep(sideLoad.getRecep());
+
+        messagesRepository.save(firstMessage);
+
+        return sideLoad;
+    }
+
+
 }

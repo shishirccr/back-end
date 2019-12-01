@@ -120,6 +120,18 @@ public class UserController {
         return new ResponseEntity<>(messageService.saveMessage(message), HttpStatus.CREATED);
     }
 
+    @GetMapping("/api/user/messages/getrecipinfo/{name}")
+    public ResponseEntity<?> getConversation(@PathVariable String name){
+        User recipient = userService.findByUsername(name);
+        return new ResponseEntity<>(recipient, HttpStatus.OK);
+    }
+
+    @PostMapping("/api/user/messages/newconversation/")
+    public ResponseEntity<?> saveConversation(@RequestBody Conversations conversations){
+        return new ResponseEntity<>(messageService.saveConversation(conversations), HttpStatus.CREATED);
+    }
+
+
 
 
 

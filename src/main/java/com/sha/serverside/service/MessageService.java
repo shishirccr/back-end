@@ -13,4 +13,5 @@ public interface MessageService {
     List<Messages> getConversation(Long convoid);
     Optional<Conversations> getConversationMeta(Long convoid);
     Messages saveMessage(Messages message);
+    Conversations saveConversation(Conversations conversations);
 }
