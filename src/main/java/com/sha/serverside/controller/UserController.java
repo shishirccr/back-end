@@ -1,22 +1,21 @@
 package com.sha.serverside.controller;
 
+import antlr.debug.MessageAdapter;
 import com.sha.serverside.jwt.JwtTokenProvider;
-import com.sha.serverside.model.CourseStudent;
-import com.sha.serverside.model.Role;
-import com.sha.serverside.model.User;
+import com.sha.serverside.model.*;
 import com.sha.serverside.service.CourseService;
 import com.sha.serverside.service.CourseStudentService;
+import com.sha.serverside.service.MessageService;
 import com.sha.serverside.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -32,6 +31,9 @@ public class UserController {
 
     @Autowired
     private CourseStudentService courseStudentService;
+
+    @Autowired
+    private MessageService messageService;
 
     @PostMapping("/api/user/registration")
     public ResponseEntity<?> register(@RequestBody User user){
@@ -82,6 +84,42 @@ public class UserController {
         return new ResponseEntity<>(userService.updateUser(user), HttpStatus.CREATED);
 
     }
+
+    // Messages API
+
+    @GetMapping("/api/user/messages/conversations/{userId}")
+    public ResponseEntity<?> getConversationsByUserId(@PathVariable Long userId){
+        List<Conversations> conversationsList =
+                messageService.getConversationsByUserID(userId);
+        return new ResponseEntity<>(conversationsList, HttpStatus.OK);
+    }
+
+    @GetMapping("/api/user/messages/conversationsrecep/{userId}")
+    public ResponseEntity<?> getConversations2ByUserId(@PathVariable Long userId){
+        List<Conversations> conversationsList =
+                messageService.getConversations2ByUserID(userId);
+        return new ResponseEntity<>(conversationsList, HttpStatus.OK);
+    }
+
+    @GetMapping("/api/user/messages/conversationmeta/{convoid}")
+    public ResponseEntity<?> getConversationTitle(@PathVariable Long convoid){
+        Optional<Conversations> convoContent =
+                messageService.getConversationMeta(convoid);
+        return new ResponseEntity<>(convoContent, HttpStatus.OK);
+    }
+
+    @GetMapping("/api/user/messages/conversation/{convoid}")
+    public ResponseEntity<?> getConversation(@PathVariable Long convoid){
+        List<Messages> messagesList =
+                messageService.getConversation(convoid);
+        return new ResponseEntity<>(messagesList, HttpStatus.OK);
+    }
+
+    @PostMapping("/api/user/messages/newMessage/")
+    public ResponseEntity<?> saveMessage(@RequestBody Messages message){
+        return new ResponseEntity<>(messageService.saveMessage(message), HttpStatus.CREATED);
+    }
+
 
 
 
