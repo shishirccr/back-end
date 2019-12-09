@@ -1,4 +1,4 @@
-# Student Enrollment System Server Side
+# Learning management System Server Side
 
 This project is a Spring Boot, MySQL, Hibernate and Liquabase project.
 
